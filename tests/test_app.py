@@ -61,7 +61,7 @@ class TestSignup:
 
         # Act
         response = client.post(
-            "/activities/Chess Club/signup",
+            "/activities/Chess%20Club/signup",
             params={"email": email},
         )
 
@@ -74,7 +74,7 @@ class TestSignup:
         email = "newstudent@mergington.edu"
 
         # Act
-        client.post("/activities/Chess Club/signup", params={"email": email})
+        client.post("/activities/Chess%20Club/signup", params={"email": email})
 
         # Assert
         assert email in activities["Chess Club"]["participants"]
@@ -85,7 +85,7 @@ class TestSignup:
 
         # Act
         response = client.post(
-            "/activities/Unknown Activity/signup",
+            "/activities/Unknown%20Activity/signup",
             params={"email": email},
         )
 
@@ -95,11 +95,11 @@ class TestSignup:
     def test_duplicate_signup_returns_400(self):
         # Arrange
         email = "newstudent@mergington.edu"
-        client.post("/activities/Chess Club/signup", params={"email": email})
+        client.post("/activities/Chess%20Club/signup", params={"email": email})
 
         # Act
         response = client.post(
-            "/activities/Chess Club/signup",
+            "/activities/Chess%20Club/signup",
             params={"email": email},
         )
 
@@ -118,7 +118,7 @@ class TestUnregister:
 
         # Act
         response = client.delete(
-            "/activities/Chess Club/signup",
+            "/activities/Chess%20Club/signup",
             params={"email": email},
         )
 
@@ -131,7 +131,7 @@ class TestUnregister:
         email = "michael@mergington.edu"  # pre-seeded participant
 
         # Act
-        client.delete("/activities/Chess Club/signup", params={"email": email})
+        client.delete("/activities/Chess%20Club/signup", params={"email": email})
 
         # Assert
         assert email not in activities["Chess Club"]["participants"]
@@ -142,7 +142,7 @@ class TestUnregister:
 
         # Act
         response = client.delete(
-            "/activities/Unknown Activity/signup",
+            "/activities/Unknown%20Activity/signup",
             params={"email": email},
         )
 
@@ -155,7 +155,7 @@ class TestUnregister:
 
         # Act
         response = client.delete(
-            "/activities/Chess Club/signup",
+            "/activities/Chess%20Club/signup",
             params={"email": email},
         )
 
